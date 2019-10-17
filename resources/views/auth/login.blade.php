@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('master')
 
 @section('content')
-<div class="container">
+{{-- <div class="container" style="margin-top:100px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -68,6 +68,52 @@
                 </div>
             </div>
         </div>
+    </div>
+</div> --}}
+
+<div class="wrapper" >
+    <div class="page-header" style="background-image: url('../assets/img/sections/bruno-abatti.jpg');">
+      <div class="filter"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
+            <div class="card card-register" style="margin-top:40%">
+              <h3 class="card-title">Welcome</h3>
+              <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <label>Email</label>
+                {{-- <input type="email" class="form-control no-border" placeholder="Email"> --}}
+                <input id="email" type="email" class="form-control no-border @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                <label>Password</label>
+                {{-- <input type="password" class="form-control no-border" placeholder="Password"> --}}
+                <input id="password" type="password" class="form-control no-border @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                <button type="submit" class="btn btn-danger btn-block btn-round">Login</button>
+              </form>
+              <div class="forgot">
+                <a href="#paper-kit" class="btn btn-link btn-danger">Forgot password?</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-footer text-center">
+          <h6>&copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim</h6>
+        </div>
+      </div>
     </div>
 </div>
 @endsection
