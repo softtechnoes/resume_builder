@@ -182,8 +182,8 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="btn btn-round btn-danger" href="https://www.creative-tim.com/product/paper-kit-2-pro" target="_blank">
-              <i class="nc-icon nc-cart-simple"></i> Buy Now
+            <a class="btn btn-round btn-danger" href="/login">
+              <i class="nc-icon nc-cart-simple"></i> Login
             </a>
           </li>
           <!-- <li class="nav-item">

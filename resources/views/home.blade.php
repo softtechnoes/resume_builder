@@ -1,5 +1,7 @@
 @extends('master_user')
-
+@section('title')
+{{Auth::user()->name}}
+@stop
 @section('content')
 <main>
 
@@ -94,14 +96,12 @@
                     <div class="card-panel">
                         <div class="text-box">
                             <p>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.
+                                {{Auth::user()->about}}
                             </p>
-                            <p>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                            </p>
+                           
                         </div>
                         <div class="bts">
-                            <a href="#" class="btn waves-effect waves-light">Download CV</a>
+                            <a href="#descriptionModal" class="btn waves-effect waves-light">Edit</a>
                         </div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                                 <div class="col s6 m5 l5 grey-text darken-1">
                                     <i class="material-icons">perm_identity</i> Age:
                                 </div>
-                                <div class="col s6 m7 l7 grey-text text-darken-4 right-align">22 Years</div>
+                                <div class="col s6 m7 l7 grey-text text-darken-4 right-align">{{Auth::user()->age}} Years</div>
                             </div>
                         </li>
                         <li class="collection-item">
@@ -120,7 +120,7 @@
                                 <div class="col s6 m5 l5 grey-text darken-1">
                                     <i class="material-icons">work</i> Job:
                                 </div>
-                                <div class="col s6 m7 l7 grey-text text-darken-4 right-align">Freelancer</div>
+                                <div class="col s6 m7 l7 grey-text text-darken-4 right-align">{{Auth::user()->job}}</div>
                             </div>
                         </li>
                         <li class="collection-item">
@@ -128,7 +128,7 @@
                                 <div class="col s6 m5 l5 grey-text darken-1">
                                     <i class="material-icons">location_on</i> Citizenship:
                                 </div>
-                                <div class="col s6 m7 l7 grey-text text-darken-4 right-align">United States</div>
+                                <div class="col s6 m7 l7 grey-text text-darken-4 right-align">{{Auth::user()->citizenship}}</div>
                             </div>
                         </li>
                         <li class="collection-item">
@@ -136,7 +136,12 @@
                                 <div class="col s6 m5 l5 grey-text darken-1">
                                     <i class="material-icons">business</i> Address:
                                 </div>
-                                <div class="col s6 m7 l7 grey-text text-darken-4 right-align">358 W Jefferson St, Bensenville</div>
+                                <div class="col s6 m7 l7 grey-text text-darken-4 right-align">{{Auth::user()->address}}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="bts">
+                                <a href="#userinfoModal" class="btn waves-effect waves-light">Edit</a>
                             </div>
                         </li>
                     </ul>
@@ -164,7 +169,7 @@
                                 <div class="col s8 m5 l5 grey-text darken-1">
                                     <i class="material-icons">stars</i> Awards Won:
                                 </div>
-                                <div class="col s4 m7 l7 grey-text text-darken-4 right-align">16</div>
+                                <div class="col s4 m7 l7 grey-text text-darken-4 right-align">{{Auth::user()->awards_won}}</div>
                             </div>
                         </li>
                         <li class="collection-item">
@@ -173,6 +178,11 @@
                                     <i class="material-icons">album</i> Albumes Listened:
                                 </div>
                                 <div class="col s4 m7 l7 grey-text text-darken-4 right-align">80</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="bts">
+                                <a href="#" class="btn waves-effect waves-light">Edit</a>
                             </div>
                         </li>
                     </ul>
@@ -319,13 +329,322 @@
 
         </div>
 
+        <!-- Section Education -->
+        <div class="section experience scrollspy" id="experience-section">
+
+            <!-- Title -->
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <h5 class="grey-text text-darken-2 left-align">Education</h5>
+                </div>
+            </div>
+
+            <!-- Education Items Items -->
+            <div class="row">
+                @if(count($high_school)!=0)
+                <div class="col s12 m12 l6">
+                    <ul class="collection collection-resume z-depth-1">
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle green darken-2">assignment</i>
+                            <span class="ultra-small red-text darken-2 right">{{ $high_school[0]['passing_year'] }}</span>
+                            <div class="title">HIGH SCHOOL</div>
+                            <span class="tag red darken-2">Percentage - {{ $high_school[0]['percentage'] }}%</span>
+                            <span class="tag red darken-2">{{ $high_school[0]['school_name'] }}</span>
+                            <span class="tag red darken-2">{{ $high_school[0]['school_address'] }}</span>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">School Name</div>
+                                <div class="col-md-8">{{ $high_school[0]['school_name'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Board</div>
+                                <div class="col-md-8">{{ $high_school[0]['board_name'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Passing Year</div>
+                                <div class="col-md-8">{{ $high_school[0]['passing_year'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Percentage</div>
+                                <div class="col-md-8">{{ $high_school[0]['percentage'] }}%</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">State</div>
+                                <div class="col-md-8">{{ $high_school[0]['state'] }}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                @endif
+                @if(count($intermediate)!=0)
+                <div class="col s12 m12 l6">
+                    <ul class="collection collection-resume z-depth-1">
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle green darken-2">assignment</i>
+                            <span class="ultra-small red-text darken-2 right">{{ $intermediate[0]['passing_year'] }}</span>
+                            <div class="title">INTERMEDIATE</div>
+                            <span class="tag red darken-2">Percentage - {{ $intermediate[0]['percentage'] }}%</span>
+                            <span class="tag red darken-2">{{ $intermediate[0]['school_name'] }}</span>
+                            <span class="tag red darken-2">{{ $intermediate[0]['school_address'] }}</span>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">School Name</div>
+                                <div class="col-md-8">{{ $intermediate[0]['school_name'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Board</div>
+                                <div class="col-md-8">{{ $intermediate[0]['board_name'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Passing Year</div>
+                                <div class="col-md-8">{{ $intermediate[0]['passing_year'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Percentage</div>
+                                <div class="col-md-8">{{ $intermediate[0]['percentage'] }}%</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">State</div>
+                                <div class="col-md-8">{{ $intermediate[0]['state'] }}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                @endif
+            </div>
+            <div class="row">
+                @if(count($graduation)!=0)
+                <div class="col s12 m12 l6">
+                    <ul class="collection collection-resume z-depth-1">
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle green darken-2">assignment</i>
+                            <span class="ultra-small red-text darken-2 right">{{ $graduation[0]['from'] }}-{{ $graduation[0]['to'] }}</span>
+                            <div class="title">GRADUATION</div>
+                            <span class="tag red darken-2">Percentage - {{ $graduation[0]['percentage'] }}%</span>
+                            <span class="tag red darken-2">{{ $graduation[0]['college'] }}</span>
+                            <span class="tag red darken-2">{{ $graduation[0]['college_address'] }}</span>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Course Name</div>
+                                <div class="col-md-8">{{ $graduation[0]['course_name'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Specialization</div>
+                                <div class="col-md-8">{{ $graduation[0]['specialization'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">College Name</div>
+                                <div class="col-md-8">{{ $graduation[0]['college'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">University</div>
+                                <div class="col-md-8">{{ $graduation[0]['university'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Passing Year</div>
+                                <div class="col-md-8">{{ $graduation[0]['passing_year'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Percentage</div>
+                                <div class="col-md-8">{{ $graduation[0]['percentage'] }}%</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">State</div>
+                                <div class="col-md-8">{{ $graduation[0]['state'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">College Address</div>
+                                <div class="col-md-8">{{ $graduation[0]['college_address'] }}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                @endif
+                @if(count($master)!=0)
+                <div class="col s12 m12 l6">
+                    <ul class="collection collection-resume z-depth-1">
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle green darken-2">assignment</i>
+                            <span class="ultra-small red-text darken-2 right">{{ $master[0]['from'] }}-{{ $master[0]['to'] }}</span>
+                            <div class="title">MASTER</div>
+                            <span class="tag red darken-2">Percentage - {{ $master[0]['percentage'] }}%</span>
+                            <span class="tag red darken-2">{{ $master[0]['college'] }}</span>
+                            <span class="tag red darken-2">{{ $master[0]['college_address'] }}</span>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Course Name</div>
+                                <div class="col-md-8">{{ $master[0]['course_name'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Specialization</div>
+                                <div class="col-md-8">{{ $master[0]['specialization'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">College Name</div>
+                                <div class="col-md-8">{{ $master[0]['college'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">University</div>
+                                <div class="col-md-8">{{ $master[0]['university'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Passing Year</div>
+                                <div class="col-md-8">{{ $master[0]['passing_year'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">Percentage</div>
+                                <div class="col-md-8">{{ $master[0]['percentage'] }}%</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">State</div>
+                                <div class="col-md-8">{{ $master[0]['state'] }}</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col-md-4">College Address</div>
+                                <div class="col-md-8">{{ $master[0]['college_address'] }}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                @endif
+            </div>
+            <div class="row">
+                    @if(count($diploma)!=0)
+                    <div class="col s12 m12 l6">
+                        <ul class="collection collection-resume z-depth-1">
+                            <li class="collection-item avatar">
+                                <i class="material-icons circle green darken-2">assignment</i>
+                                <span class="ultra-small red-text darken-2 right">{{ $diploma[0]['from'] }}-{{ $diploma[0]['to'] }}</span>
+                                <div class="title">DIPLOMA</div>
+                                <span class="tag red darken-2">Percentage - {{ $diploma[0]['percentage'] }}%</span>
+                                <span class="tag red darken-2">{{ $diploma[0]['college'] }}</span>
+                                <span class="tag red darken-2">{{ $diploma[0]['college_address'] }}</span>
+                            </li>
+                            <li class="collection-item">
+                                <div class="row">
+                                    <div class="col-md-4">Course Name</div>
+                                    <div class="col-md-8">{{ $diploma[0]['course_name'] }}</div>
+                                </div>
+                            </li>
+                            <li class="collection-item">
+                                <div class="row">
+                                    <div class="col-md-4">Specialization</div>
+                                    <div class="col-md-8">{{ $diploma[0]['specialization'] }}</div>
+                                </div>
+                            </li>
+                            <li class="collection-item">
+                                <div class="row">
+                                    <div class="col-md-4">College Name</div>
+                                    <div class="col-md-8">{{ $diploma[0]['college'] }}</div>
+                                </div>
+                            </li>
+                            <li class="collection-item">
+                                <div class="row">
+                                    <div class="col-md-4">University</div>
+                                    <div class="col-md-8">{{ $diploma[0]['university'] }}</div>
+                                </div>
+                            </li>
+                            <li class="collection-item">
+                                <div class="row">
+                                    <div class="col-md-4">Passing Year</div>
+                                    <div class="col-md-8">{{ $diploma[0]['passing_year'] }}</div>
+                                </div>
+                            </li>
+                            <li class="collection-item">
+                                <div class="row">
+                                    <div class="col-md-4">Percentage</div>
+                                    <div class="col-md-8">{{ $diploma[0]['percentage'] }}%</div>
+                                </div>
+                            </li>
+                            <li class="collection-item">
+                                <div class="row">
+                                    <div class="col-md-4">State</div>
+                                    <div class="col-md-8">{{ $diploma[0]['state'] }}</div>
+                                </div>
+                            </li>
+                            <li class="collection-item">
+                                <div class="row">
+                                    <div class="col-md-4">College Address</div>
+                                    <div class="col-md-8">{{ $diploma[0]['college_address'] }}</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    @endif
+                <div class="col s12 m12 l6">
+                    <ul class="collection collection-resume z-depth-1">
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle red darken-2">school</i>
+                            <span class="ultra-small red-text darken-2 right">2005-2008</span>
+                            <div class="title">Art University</div>
+                            <span class="tag red darken-2">New York</span>
+                        </li>
+                        <li class="collection-item">
+                            <p>
+                                Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ius illum vocent mediocritatem an, cule dicta iriure at. Ubique maluisset vel te, his dico vituperata ut. Pro ei phaedrum maluisset. Ex audire suavitate has, ei quodsi tacimates sapientem sed, pri zril ubique ut. Lorem ipsum dolor sit amet, in quodsi.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
         <!-- Section Resume -->
         <div class="section experience scrollspy" id="experience-section">
 
             <!-- Title -->
             <div class="row">
                 <div class="col s12 m12 l12">
-                    <h5 class="grey-text text-darken-2 left-align">Experience & Education</h5>
+                    <h5 class="grey-text text-darken-2 left-align">Experience</h5>
                 </div>
             </div>
 
@@ -1024,10 +1343,96 @@
         
     </div>
 
+
     <!-- Footer -->
     <footer>
         <div class="copy">© 2016 mateCard. All rights reserved.</div>
     </footer>
+    <!-- MODALS -->
+  <!-- classicModal -->
+  <div class="modal fade" id="classicModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="modal-title text-center" id="exampleModalLabel">Modal title</h5>
+        </div>
+        <div class="modal-body"> Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+        </div>
+        <div class="modal-footer">
+          <div class="left-side">
+            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Never mind</button>
+          </div>
+          <div class="divider"></div>
+          <div class="right-side">
+            <button type="button" class="btn btn-danger btn-link">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- About modal start-->
+    <div id="descriptionModal" class="modalDialog">
+        <div>
+           <a href="#close" title="Close" class="close">X</a>
+           <h4>About</h4>
+           <div id="about"><p>Something about yourself</p></div>
+           <button id="save_about" class="btn waves-effect waves-light">Save</button>
+           <button id="cancel" class="btn waves-effect waves-light" style="background-color: red;">Cancel</button>
+         </div>
+     </div>
+<!-- About modal ends-->
 
+  <!-- basic info modal start-->
+  <div id="userinfoModal" class="modalDialog">
+    <div>
+       <a href="#close" title="Close" class="close">X</a>
+       <h4>About</h4>
+       <div class="row">
+           <div class="col-md-6">
+               Age
+           </div>
+           <div class="col-md-6">
+            <input id="age" type="text" class="form-control">
+            </div>
+       </div>
+       <div class="row">
+        <div class="col-md-6">
+            Job
+        </div>
+        <div class="col-md-6">
+         <input id="job" type="text" class="form-control">
+         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            Citizenship
+        </div>
+        <div class="col-md-6">
+         <input id="citizenship" type="text" class="form-control">
+         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            Address
+        </div>
+        <div class="col-md-6">
+         <input id="address" type="text" class="form-control">
+         </div>
+    </div>
+       <button id="save_about" class="btn waves-effect waves-light">Save</button>
+       <a href="#close" class="btn waves-effect waves-light" style="background-color: red;">Cancel</button>
+     </div>
+ </div>
+<!-- basic info modal ends-->
 </main>
+
+<script>
+    $(document).ready(function() {
+        $('#about').summernote();
+    });
+  </script>
 @endsection

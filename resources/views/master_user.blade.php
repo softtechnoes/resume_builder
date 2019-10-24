@@ -25,8 +25,11 @@
 	<link rel="stylesheet" href="user/css/animate.css" />
 	<link rel="stylesheet" href="user/css/ionicons.css" />
 
-
-
+	<link href="plugins/summernote/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet" defer>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js" defer></script>
 	
 	<!--[if lt IE 9]>
 	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -113,11 +116,6 @@
 					</a>
 				</li>
 				<li>
-					<a href="#started-section" class="waves-effect waves-light">
-						<i class="material-icons">home</i>Comments
-					</a>
-				</li>
-				<li>
 					<a href="#about-section" class="waves-effect waves-light">
 						<i class="material-icons">person_pin</i>About
 					</a>
@@ -186,11 +184,12 @@
 	<script src="user/js/magnific-popup.js"></script>
 
 	<!-- Google map api -->
-	<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+	{{-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> --}}
 	
 	<!-- Main Scripts -->
 	<script src="user/js/main.js"></script>
 	
+
 </body>
 
 <!-- Mirrored from beshley.com/matecard/theme_colors/default/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 28 Sep 2019 08:57:17 GMT -->

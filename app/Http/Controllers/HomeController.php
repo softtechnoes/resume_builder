@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TestComment;
+use App\Highschool;
+use App\Intermediate;
+use App\Graduation;
+use App\Master;
+use App\Diploma;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,8 +30,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $id=Auth::user()->id;
+        $high_school = Highschool::where('user_id',$id)->get()->toArray();
+        $intermediate = Intermediate::where('user_id',$id)->get()->toArray();
+        $graduation = Graduation::where('user_id',$id)->get()->toArray();
+        $master = Master::where('user_id',$id)->get()->toArray();
+        $diploma = Diploma::where('user_id',$id)->get()->toArray();
+        // dd(count($master));
+        return view('home',compact('high_school','intermediate','graduation','master','diploma'));
     }
+
     public function comments(){
         return view('comments');
     }

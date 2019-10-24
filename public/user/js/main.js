@@ -199,6 +199,6 @@ function initMap() {
 		title: 'We are here!'
 	});
 }
-if($('#map').length) {
-	google.maps.event.addDomListener(window, 'load', initMap);
-}
+// if($('#map').length) {
+// 	google.maps.event.addDomListener(window, 'load', initMap);
+// }
