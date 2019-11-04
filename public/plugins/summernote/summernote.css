@@ -812,7 +812,7 @@ html {
 
 input,
 button,
-select,
+/* select, */
 
 a {
   color: #337ab7;
@@ -2122,10 +2122,10 @@ input[type="range"] {
   display: block;
   width: 100%;
 }
-select[multiple],
+/* select[multiple],
 select[size] {
   height: auto;
-}
+} */
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
@@ -2239,44 +2239,44 @@ fieldset[disabled] .checkbox label {
 }
 
 
-select.input-sm {
+/* select.input-sm {
   height: 30px;
   line-height: 30px;
 }
 textarea.input-sm,
 select[multiple].input-sm {
   height: auto;
-}
+} */
 
 
-.form-group-sm select.form-control {
+/* .form-group-sm select.form-control {
   height: 30px;
   line-height: 30px;
 }
 .form-group-sm textarea.form-control,
 .form-group-sm select[multiple].form-control {
   height: auto;
-}
+} */
 
 
-select.input-lg {
+/* select.input-lg {
   height: 46px;
   line-height: 46px;
 }
 textarea.input-lg,
 select[multiple].input-lg {
   height: auto;
-}
+} */
 
 
-.form-group-lg select.form-control {
+/* .form-group-lg select.form-control {
   height: 46px;
   line-height: 46px;
 }
 .form-group-lg textarea.form-control,
 .form-group-lg select[multiple].form-control {
   height: auto;
-}
+} */
 
 
 .has-feedback {
@@ -3349,7 +3349,7 @@ tbody.collapse.in {
   line-height: 1.3333333;
   border-radius: 6px;
 }
-select.input-group-lg > .form-control,
+/* select.input-group-lg > .form-control,
 select.input-group-lg > .input-group-addon,
 select.input-group-lg > .input-group-btn > .btn {
   height: 46px;
@@ -3362,7 +3362,7 @@ select[multiple].input-group-lg > .form-control,
 select[multiple].input-group-lg > .input-group-addon,
 select[multiple].input-group-lg > .input-group-btn > .btn {
   height: auto;
-}
+} */
 .input-group-sm > .form-control,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn {
@@ -3372,7 +3372,7 @@ select[multiple].input-group-lg > .input-group-btn > .btn {
   line-height: 1.5;
   border-radius: 3px;
 }
-select.input-group-sm > .form-control,
+/* select.input-group-sm > .form-control,
 select.input-group-sm > .input-group-addon,
 select.input-group-sm > .input-group-btn > .btn {
   height: 30px;
@@ -3385,7 +3385,7 @@ select[multiple].input-group-sm > .form-control,
 select[multiple].input-group-sm > .input-group-addon,
 select[multiple].input-group-sm > .input-group-btn > .btn {
   height: auto;
-}
+} */
 .input-group-addon,
 .input-group-btn,
 .input-group .form-control {

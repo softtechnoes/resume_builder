@@ -64,6 +64,25 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
   <!-- Extra details for Live View on GitHub Pages -->
+
+ 
+  {{-- <script language="JavaScript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script> --}}
+   <link rel="stylesheet" href="assets/css/materialize.css" />
+   <link rel="stylesheet" href="assets/css/layout.css" />
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link href="{{asset('plugins/select2-4.0.7/css/custom-select.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('plugins/notify/css/amaran.min.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('plugins/notify/css/animate.min.css')}}" rel="stylesheet" type="text/css" />
+
+{{-- Datepicker js ui --}}
+  {{-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> --}} 
+  
+  <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  @stack('css')
 </head>
 
 <body class="presentation-page sidebar-collapse">
@@ -182,9 +201,16 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="btn btn-round btn-danger" href="/login">
-              <i class="nc-icon nc-cart-simple"></i> Login
-            </a>
+            @if (Auth::user())
+              <a class="btn btn-round btn-danger" href="/logout">
+                <i class="fa fa-sign-out"></i> Logout
+              </a>
+              @else
+              <a class="btn btn-round btn-danger" href="/login">
+                <i class="fa fa-sign-in"></i> Login
+              </a>
+            @endif
+           
           </li>
           <!-- <li class="nav-item">
 					<a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
@@ -236,8 +262,9 @@
       </div>
     </div>
   </footer>
+
+  
   <!--   Core JS Files   -->
-  <script src="assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
   <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
@@ -261,271 +288,86 @@
   <script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
   <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/paper-kit.mindc68.js?v=2.3.0" type="text/javascript"></script>
-  <!--  Google Maps Plugin    -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+
   <!--  Plugin for presentation page - isometric cards  -->
   <script src="assets/js/plugins/presentation-page/main.js"></script>
   <!-- Sharrre libray -->
   <script src="assets/demo/jquery.sharrre.js"></script>
-  <script>
-    $(document).ready(function() {
+  <script src="{{asset('plugins/custom-select/custom-select.min.js')}}" type="text/javascript"></script>
 
-      // Facebook Pixel Code Don't Delete
-      ! function(f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function() {
-          n.callMethod ?
-            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s)
-      }(window,
-        document, 'script', '../../connect.facebook.net/en_US/fbevents.js');
+  <script src="{{asset('plugins/notify/jquery.amaran.js')}}" type="text/javascript"></script>
+  <script src="{{asset('plugins/notify/jquery.amaran.min.js')}}" type="text/javascript"></script>
+ <script>
+ jQuery(document).ready(function() {
+     $(".select2").select2();
+ });
+ $('#start').on('click',function(){
+    $.amaran({
+        'message'   :'My positioning example.',
+        'position'  :'bottom right'
+});
+});
+//  Datepicker
 
-      try {
-        fbq('init', '111649226022273');
-        fbq('track', "PageView");
-
-      } catch (err) {
-        console.log('Facebook Track Error:', err);
-      }
-
-    });
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&amp;ev=PageView&amp;noscript=1" />
-  </noscript>
-  <script>
-    $(document).ready(function() {
-
-      $sidebar = $('.sidebar');
-      $sidebar_img_container = $sidebar.find('.sidebar-background');
-
-      $full_page = $('.full-page');
-
-      $sidebar_responsive = $('body > .navbar-collapse');
-      sidebar_mini_active = true;
-
-      window_width = $(window).width();
-
-      fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-      // if( window_width > 767 && fixed_plugin_open == 'Dashboard' ){
-      //     if($('.fixed-plugin .dropdown').hasClass('show-dropdown')){
-      //         $('.fixed-plugin .dropdown').addClass('show');
-      //     }
-      //
-      // }
-
-      $('.fixed-plugin a').click(function(event) {
-        // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-        if ($(this).hasClass('switch-trigger')) {
-          if (event.stopPropagation) {
-            event.stopPropagation();
-          } else if (window.event) {
-            window.event.cancelBubble = true;
+      $('#example1').calendar();
+      $('#example2').calendar({
+        type: 'date'
+      });
+      $('#example3').calendar({
+        type: 'time'
+      });
+      $('#rangestart').calendar({
+        type: 'date',
+        endCalendar: $('#rangeend')
+      });
+      $('#rangeend').calendar({
+        type: 'date',
+        startCalendar: $('#rangestart')
+      });
+      $('#example4').calendar({
+        startMode: 'year'
+      });
+      $('#example5').calendar();
+      $('#example6').calendar({
+        ampm: false,
+        type: 'time'
+      });
+      $('#example7').calendar({
+        type: 'month'
+      });
+      $('#example8').calendar({
+        type: 'year'
+      });
+      $('#example9').calendar();
+      $('#example10').calendar({
+        on: 'hover'
+      });
+      var today = new Date();
+      $('#example11').calendar({
+        minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() - 5),
+        maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 5)
+      });
+      $('#example12').calendar({
+        monthFirst: false
+      });
+      $('#example13').calendar({
+        monthFirst: false,
+        formatter: {
+          date: function (date, settings) {
+            if (!date) return '';
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+            return day + '/' + month + '/' + year;
           }
         }
       });
-
-      $('.fixed-plugin .active-color span').click(function() {
-        $full_page_background = $('.full-page-background');
-
-        $(this).siblings().removeClass('active');
-        $(this).addClass('active');
-
-        var new_color = $(this).data('color');
-
-        if ($sidebar.length != 0) {
-          $sidebar.attr('data-active-color', new_color);
-        }
-
-        if ($full_page.length != 0) {
-          $full_page.attr('data-active-color', new_color);
-        }
-
-        if ($sidebar_responsive.length != 0) {
-          $sidebar_responsive.attr('data-active-color', new_color);
-        }
+      $('#example14').calendar({
+        inline: true
       });
-
-      $('.fixed-plugin .background-color span').click(function() {
-        $(this).siblings().removeClass('active');
-        $(this).addClass('active');
-
-        var new_color = $(this).data('color');
-
-        if ($sidebar.length != 0) {
-          $sidebar.attr('data-color', new_color);
-        }
-
-        if ($full_page.length != 0) {
-          $full_page.attr('filter-color', new_color);
-        }
-
-        if ($sidebar_responsive.length != 0) {
-          $sidebar_responsive.attr('data-color', new_color);
-        }
-      });
-
-      $('.fixed-plugin .img-holder').click(function() {
-        $full_page_background = $('.full-page-background');
-
-        $(this).parent('li').siblings().removeClass('active');
-        $(this).parent('li').addClass('active');
-
-
-        var new_image = $(this).find("img").attr('src');
-
-        if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-          $sidebar_img_container.fadeOut('fast', function() {
-            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-            $sidebar_img_container.fadeIn('fast');
-          });
-        }
-
-        if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-          var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-          $full_page_background.fadeOut('fast', function() {
-            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-            $full_page_background.fadeIn('fast');
-          });
-        }
-
-        if ($('.switch-sidebar-image input:checked').length == 0) {
-          var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
-          var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-          $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-          $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-        }
-
-        if ($sidebar_responsive.length != 0) {
-          $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-        }
-      });
-
-      $('.switch-sidebar-image input').on("switchChange.bootstrapSwitch", function() {
-        $full_page_background = $('.full-page-background');
-
-        $input = $(this);
-
-        if ($input.is(':checked')) {
-          if ($sidebar_img_container.length != 0) {
-            $sidebar_img_container.fadeIn('fast');
-            $sidebar.attr('data-image', '#');
-          }
-
-          if ($full_page_background.length != 0) {
-            $full_page_background.fadeIn('fast');
-            $full_page.attr('data-image', '#');
-          }
-
-          background_image = true;
-        } else {
-          if ($sidebar_img_container.length != 0) {
-            $sidebar.removeAttr('data-image');
-            $sidebar_img_container.fadeOut('fast');
-          }
-
-          if ($full_page_background.length != 0) {
-            $full_page.removeAttr('data-image', '#');
-            $full_page_background.fadeOut('fast');
-          }
-
-          background_image = false;
-        }
-      });
-
-
-      $('.switch-mini input').on("switchChange.bootstrapSwitch", function() {
-        $body = $('body');
-
-        $input = $(this);
-
-        if (paperDashboard.misc.sidebar_mini_active == true) {
-          $('body').removeClass('sidebar-mini');
-          paperDashboard.misc.sidebar_mini_active = false;
-
-          $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
-
-        } else {
-
-          $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
-
-          setTimeout(function() {
-            $('body').addClass('sidebar-mini');
-
-            paperDashboard.misc.sidebar_mini_active = true;
-          }, 300);
-        }
-
-        // we simulate the window Resize so the charts will get updated in realtime.
-        var simulateWindowResize = setInterval(function() {
-          window.dispatchEvent(new Event('resize'));
-        }, 180);
-
-        // we stop the simulation of Window Resize after the animations are completed
-        setTimeout(function() {
-          clearInterval(simulateWindowResize);
-        }, 1000);
-
-      });
-
-    });
-  </script>
-  <script type="text/javascript">
-    (function() {
-      function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      }
-
-      new IsoGrid(document.querySelector('.isolayer--deco1'), {
-        transform: 'translateX(33vw) translateY(-340px) rotateX(45deg) rotateZ(45deg)',
-        stackItemsAnimation: {
-          properties: function(pos) {
-            return {
-              translateZ: (pos + 1) * 30,
-              rotateZ: getRandomInt(-4, 4)
-            };
-          },
-          options: function(pos, itemstotal) {
-            return {
-              type: dynamics.bezier,
-              duration: 500,
-              points: [{
-                "x": 0,
-                "y": 0,
-                "cp": [{
-                  "x": 0.2,
-                  "y": 1
-                }]
-              }, {
-                "x": 1,
-                "y": 1,
-                "cp": [{
-                  "x": 0.3,
-                  "y": 1
-                }]
-              }],
-              delay: (itemstotal - pos - 1) * 40
-            };
-          }
-        }
-      });
-    })();
-  </script>
+      $('#example15').calendar();
+    
+ </script>
+  @stack('scripts')
 </body>
-
-
-<!-- Mirrored from demos.creative-tim.com/paper-kit-2-pro/presentation.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Oct 2019 06:45:15 GMT -->
 </html>
