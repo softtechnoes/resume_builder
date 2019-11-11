@@ -72,27 +72,30 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <link href="{{asset('plugins/select2-4.0.7/css/custom-select.css')}}" rel="stylesheet" type="text/css" />
-  <link href="{{asset('plugins/notify/css/amaran.min.css')}}" rel="stylesheet" type="text/css" />
-  <link href="{{asset('plugins/notify/css/animate.min.css')}}" rel="stylesheet" type="text/css" />
+  
+  {{-- <link href="{{asset('plugins/notify/css/amaran.min.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('plugins/notify/css/animate.min.css')}}" rel="stylesheet" type="text/css" /> --}}
 
-{{-- Datepicker js ui --}}
-  {{-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> --}} 
+ {{-- Datepicker js ui --}}
   
   <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
   <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
   <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{{-- Notifications --}}
+  <script src="plugins/notify/js/jquery.growl.js" type="text/javascript"></script>
+  <link href="plugins/notify/css/jquery.growl.css" rel="stylesheet" type="text/css" />
   @stack('css')
 </head>
 
 <body class="presentation-page sidebar-collapse">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top">
+  <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="index.html" rel="tooltip" title="Paper Kit 2 PRO" data-placement="bottom" target="_blank">
          
-          <img src="user/images/logo-1.png" width="150">
+          <img src="user/images/logo-1.png" width="150" id="logo">
         </a> <!-- Paper Kit 2 Pro -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar bar1"></span>
@@ -295,18 +298,18 @@
   <script src="assets/demo/jquery.sharrre.js"></script>
   <script src="{{asset('plugins/custom-select/custom-select.min.js')}}" type="text/javascript"></script>
 
-  <script src="{{asset('plugins/notify/jquery.amaran.js')}}" type="text/javascript"></script>
-  <script src="{{asset('plugins/notify/jquery.amaran.min.js')}}" type="text/javascript"></script>
+  {{-- <script src="{{asset('plugins/notify/jquery.amaran.js')}}" type="text/javascript"></script>
+  <script src="{{asset('plugins/notify/jquery.amaran.min.js')}}" type="text/javascript"></script> --}}
  <script>
  jQuery(document).ready(function() {
      $(".select2").select2();
  });
- $('#start').on('click',function(){
-    $.amaran({
-        'message'   :'My positioning example.',
-        'position'  :'bottom right'
-});
-});
+//  $('#start').on('click',function(){
+//     $.amaran({
+//         'message'   :'My positioning example.',
+//         'position'  :'bottom right'
+// });
+// });
 //  Datepicker
 
       $('#example1').calendar();
@@ -368,6 +371,48 @@
       $('#example15').calendar();
     
  </script>
+ <script type="text/javascript">
+  // $.growl({ title: "Growl", message: "The kitten is awake!" });
+  // $.growl.error({ message: "The kitten is attacking!" });
+  // $.growl.notice({ message: "The kitten is cute!" });
+  // $.growl.warning({ message: "The kitten is ugly!" });
+</script>
   @stack('scripts')
+  <script>
+ // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+      // document.getElementById("navbar").style.height = "70px";
+      // document.getElementById("logo").style.height = "45px";
+      // document.getElementById("logo").style.width = "111px";
+      $('#navbar').animate({
+                height: '70px',
+                // width: '200px'
+            },.5,'linear');
+            // $('#logo').animate({
+            //     height: '47px',
+            //     width: '105px'
+            // },.5,'linear');
+     
+    } else {
+      // document.getElementById("navbar").style.height = "100px";
+      // document.getElementById("logo").style.height = "60px";
+      // document.getElementById("logo").style.width = "126px";
+      $('#navbar').animate({
+                // height: '100px',
+                padding: "40px"
+              
+                // width: '200px'
+            },.5,'linear');
+            // $('#logo').animate({
+            //     height: '60px',
+            //     width: '135px'
+            // },.5,'linear');
+    }
+
+  }
+    </script>
 </body>
 </html>

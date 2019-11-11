@@ -48,6 +48,9 @@ class HomeController extends Controller
         $boards=EducationBoards::all();
         $states_stable=State::all();
         // dd($states);
+
+       
+        //dd($article);
         return view('home',compact('high_school','intermediate','graduation','master','diploma','experience','professional_skills','personal_skills','boards','states_stable'));
     }
 
