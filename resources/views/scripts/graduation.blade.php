@@ -13,7 +13,6 @@
       var college_address=$("#grad_college_adrs").val();
       var spcialization=$("#grad_specialization").val();
 
-      console.log(college_address);
       // console.log(school_name+board+state+passing_year+school_address+percentage);
       $.ajaxSetup({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
@@ -35,19 +34,26 @@
           'spcialization': spcialization,
         }, 
         success:function(data){ 
-          console.log(data);
-          $("#grad_school_updated").html(data[0].school_name);
-          $("#grad_school_fresh").hide();
-          $("#grad_board_updated").html(data[1]);
-          $("#grad_board_fresh").hide();
-          $("#grad_state_updated").html(data[2]);
+          $("#grad_course_updated").html(data[0].course_name);
+          $("#grad_course_fresh").hide();
+          $("#grad_college_updated").html(data[0].college);
+          $("#grad_college_fresh").hide();
+          $("#grad_university_updated").html(data[0].university);
+          $("#grad_university_fresh").hide();
+          $("#grad_state_updated").html(data[1]);
           $("#grad_state_fresh").hide();
           $("#grad_percentage_updated").html(data[0].percentage);
           $("#grad_percentage_fresh").hide();
+          $("#grad_from_updated").html(data[0].from);
+          $("#grad_from_fresh").hide();
+          $("#grad_to_updated").html(data[0].to);
+          $("#grad_to_fresh").hide();
           $("#grad_passing_year_updated").html(data[0].passing_year);
           $("#grad_passing_year_fresh").hide();
-          $("#grad_school_address_updated").html(data[0].school_address);
-          $("#grad_school_address_fresh").hide();
+          $("#grad_college_address_updated").html(data[0].college_address);
+          $("#grad_college_address_fresh").hide();
+          $("#grad_specialization_updated").html(data[0].specialization);
+          $("#grad_specialization_fresh").hide();
           $.growl.notice({ message: "Done !" });
         }
       });

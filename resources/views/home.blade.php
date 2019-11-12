@@ -92,6 +92,7 @@
   @include('scripts.highSchool')
   @include('scripts.intermediate')
   @include('scripts.graduation')
+  @include('scripts.masters')
   <script>
       $("#addAbout").click(function(){
         var about = $("#about").val();
@@ -143,20 +144,7 @@
   }
   });
   </script>
-  {{-- <script>
-    $(document).ready(function() {
-      if (location.hash) {
-          $("a[href='" + location.hash + "']").tab("show");
-      }
-      $(document.body).on("click", "a[data-toggle='tab']", function(event) {
-          location.hash = this.getAttribute("href");
-      });
-    });
-    $(window).on("popstate", function() {
-        var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
-        $("a[href='" + anchor + "']").tab("show");
-    });
-  </script> --}}
+
   <script>
   if (location.hash) {
   $('a[href=\'' + location.hash + '\']').tab('show');
@@ -186,5 +174,5 @@ $(window).on('popstate', function () {
   $('a[href=\'' + anchor + '\']').tab('show');
 });
 </script>
-
+@stack('js')
 @endpush

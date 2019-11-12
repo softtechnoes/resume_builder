@@ -1,3 +1,8 @@
+@push('css')
+  <style>
+    .modal { overflow-y: auto }
+  </style>
+@endpush 
  <!-- Edit Graduation -->
  @if(count($graduation)!=0)
    <div class="modal fade" id="editGraduation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -47,12 +52,6 @@
              <div class="row">
                <div class="col-md-4">State</div>
                <div class="col-md-8"> 
-                 {{-- <div class="input-group">
-                   <input type="text" placeholder="State" class="form-control" id="grad_state" value="{{ $graduation[0]['state'] }}">
-                   <div class="input-group-append">
-                     <span class="input-group-text"><i class="fa fa-map"></i></span>
-                   </div>
-                 </div> --}}
                  <select class="form-control select2" style="width:100%" id="grad_state">
                   @foreach ($states_stable as $state)
                     <option value='{{$state->id}}' @if($state->id==$graduation[0]['state']) 
@@ -172,12 +171,6 @@
                   <span class="input-group-text"><i class="fa fa-university"></i></span>
                 </div>
               </div>
-              {{-- <select class="form-control select2" style="width:100%" id="grad_college_name">
-                <option>Select College</option>
-                @foreach ($colleges as $college)
-                  <option value='{{$college->id}}'>{{$college->college_name}}</option>
-                @endforeach
-              </select> --}}
             </div>
         </div><br>
         <div class="row">
@@ -199,12 +192,6 @@
                   <option value='{{$state->id}}'>{{$state->name}}</option>
                 @endforeach
               </select>
-            {{-- <div class="input-group">
-              <input type="text" placeholder="State" class="form-control" id="grad_state" >
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="fa fa-map"></i></span>
-              </div>
-            </div> --}}
           </div>
         </div><br>
         <div class="row">
@@ -287,3 +274,17 @@
 </div>
 </div>
  @endif
+ @push('scripts')
+ <script>
+ var grad_percentage_old = $('#grad_percentage').val();
+//  console.log(grad_percentage_old);
+  $('#grad_percentage').change(function(){
+    var grad_percentage = $('#grad_percentage').val();
+    console.log(grad_percentage);
+    if(grad_percentage>100){
+      $("#warning").modal('show');
+      $('#grad_percentage').val(grad_percentage_old);
+    }
+  });
+  </script>
+ @endpush

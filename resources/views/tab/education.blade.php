@@ -154,15 +154,15 @@
                     <table class="table table-hover info_table">
                       <tr>
                         <td>Course Name</td>
-                        <td>{{ $graduation[0]['course_name'] }}</td>
+                        <td><span id="master_course_updated"></span><span id="master_course_fresh">{{ $graduation[0]['course_name'] }}</span></td>
                       </tr>
                       <tr>
                         <td>College Name</td>
-                        <td>{{ $graduation[0]['college'] }}</td>
+                        <td><span id="master_college_updated"></span><span id="master_college_fresh">{{ $graduation[0]['college'] }}</span></td>
                       </tr>
                       <tr>
                           <td>University</td>
-                          <td>{{ $graduation[0]['university'] }}</td>
+                          <td><span id="master_university_updated"></span><span id="master_university_fresh">{{ $graduation[0]['university'] }}</span></td>
                       </tr>
                       <tr>
                           <?php 
@@ -170,31 +170,31 @@
                           $state_name=App\State::where('id',$state_id)->get()->toArray();
                           ?>
                           <td>State</td>
-                          <td>{{$state_name[0]['name']}}</td>
+                          <td><span id="master_state_updated"></span><span id="master_state_fresh">{{ $state_name[0]['name'] }}</span></td>
                       </tr>
                       <tr>
                         <td>Percentage</td>
-                        <td>{{ $graduation[0]['percentage'] }}</td>
+                        <td><span id="master_percentage_updated"></span><span id="master_percentage_fresh">{{ $graduation[0]['percentage'] }}</span></td>
                       </tr>
                       <tr>
                         <td>Passing Year</td>
-                        <td>{{ $graduation[0]['passing_year'] }}</td>
+                        <td><span id="master_passing_year_updated"></span><span id="master_passing_year_fresh">{{ $graduation[0]['passing_year'] }}</span></td>
                       </tr>
                       <tr>
                         <td>From</td>
-                        <td>{{ $graduation[0]['from'] }}</td>
+                        <td><span id="master_from_updated"></span><span id="master_from_fresh">{{ $graduation[0]['from'] }}</span></td>
                       </tr>
                       <tr>
                         <td>To</td>
-                        <td>{{ $graduation[0]['to'] }}</td>
+                        <td><span id="master_to_updated"></span><span id="master_to_fresh">{{ $graduation[0]['to'] }}</span></td>
                       </tr>
                       <tr>
                         <td>College Address</td>
-                        <td>{{ $graduation[0]['college_address'] }}</td>
+                        <td><span id="master_college_address_updated"></span><span id="master_college_address_fresh">{{ $graduation[0]['college_address'] }}</span></td>
                       </tr>
                       <tr>
                         <td>Specialization</td>
-                        <td>{{ $graduation[0]['specialization'] }}</td>
+                        <td><span id="master_specialization_updated"></span><span id="master_specialization_fresh">{{ $graduation[0]['specialization'] }}</span></td>
                       </tr>
                     </table>
                 </p>
@@ -217,62 +217,67 @@
               <div class="card-body text-center">
                 <h3 class="card-category">
                   {{-- <i class="fa fa-dribbble" aria-hidden="true"></i> --}}
-                  <i class='fa fa-graduation-cap'></i> Master
+                  <i class='fa fa-graduation-cap'></i> Graduation
                 </h3>
                 <h5 class="card-title">
                   <a href="#pablo">"Good Design Is as Little Design as Possible"</a>
                 </h5>
                 @if(count($master)!=0)
-                  <p class="card-description">
-                      <table class="table table-hover info_table">
-                          <tr>
-                            <td>Course Name</td>
-                            <td>{{ $master[0]['course_name'] }}</td>
-                          </tr>
-                          <tr>
-                            <td>College Name</td>
-                            <td>{{ $master[0]['college'] }}</td>
-                          </tr>
-                          <tr>
-                              <td>University</td>
-                              <td>{{ $master[0]['university'] }}</td>
-                          </tr>
-                          <tr>
-                              <td>State</td>
-                              <td>{{ $master[0]['state'] }}</td>
-                          </tr>
-                          <tr>
-                            <td>Percentage</td>
-                            <td>{{ $master[0]['percentage'] }}</td>
-                          </tr>
-                          <tr>
-                            <td>Passing Year</td>
-                            <td>{{ $master[0]['passing_year'] }}</td>
-                          </tr>
-                          <tr>
-                            <td>From</td>
-                            <td>{{ $master[0]['from'] }}</td>
-                          </tr>
-                          <tr>
-                            <td>To</td>
-                            <td>{{ $master[0]['to'] }}</td>
-                          </tr>
-                          <tr>
-                            <td>College Address</td>
-                            <td>{{ $master[0]['college_address'] }}</td>
-                          </tr>
-                          <tr>
-                            <td>Specialization</td>
-                            <td>{{ $master[0]['specialization'] }}</td>
-                          </tr>
-                        </table>
-                  </p>
-                  <div class="card-footer text-center">
-                    <button type="button" class="btn btn-round btn-success" data-toggle="modal" data-target="#editMaster"><i class="fa fa-edit"></i> Edit</button>
-                  </div>
+                <p class="card-description">
+                    <table class="table table-hover info_table">
+                      <tr>
+                        <td>Course Name</td>
+                        <td><span id="master_course_updated"></span><span id="master_course_fresh">{{ $master[0]['course_name'] }}</span></td>
+                      </tr>
+                      <tr>
+                        <td>College Name</td>
+                        <td><span id="master_college_updated"></span><span id="master_college_fresh">{{ $master[0]['college'] }}</span></td>
+                      </tr>
+                      <tr>
+                          <td>University</td>
+                          <td><span id="master_university_updated"></span><span id="master_university_fresh">{{ $master[0]['university'] }}</span></td>
+                      </tr>
+                      <tr>
+                          <?php 
+                          $state_id=$master[0]['state'];
+                          $state_name=App\State::where('id',$state_id)->get()->toArray();
+                          ?>
+                          <td>State</td>
+                          <td><span id="master_state_updated"></span><span id="master_state_fresh">{{ $state_name[0]['name'] }}</span></td>
+                      </tr>
+                      <tr>
+                        <td>Percentage</td>
+                        <td><span id="master_percentage_updated"></span><span id="master_percentage_fresh">{{ $master[0]['percentage'] }}</span></td>
+                      </tr>
+                      <tr>
+                        <td>Passing Year</td>
+                        <td><span id="master_passing_year_updated"></span><span id="master_passing_year_fresh">{{ $master[0]['passing_year'] }}</span></td>
+                      </tr>
+                      <tr>
+                        <td>From</td>
+                        <td><span id="master_from_updated"></span><span id="master_from_fresh">{{ $master[0]['from'] }}</span></td>
+                      </tr>
+                      <tr>
+                        <td>To</td>
+                        <td><span id="master_to_updated"></span><span id="master_to_fresh">{{ $master[0]['to'] }}</span></td>
+                      </tr>
+                      <tr>
+                        <td>College Address</td>
+                        <td><span id="master_college_address_updated"></span><span id="master_college_address_fresh">{{ $master[0]['college_address'] }}</span></td>
+                      </tr>
+                      <tr>
+                        <td>Specialization</td>
+                        <td><span id="master_specialization_updated"></span><span id="master_specialization_fresh">{{ $master[0]['specialization'] }}</span></td>
+                      </tr>
+                    </table>
+                </p>
+                <div class="card-footer text-center">
+                  <button type="button" class="btn btn-round btn-success" data-toggle="modal" data-target="#editMaster">
+                      <i class="fa fa-edit"></i> Edit</button> 
+                </div>
                 @else
                   <div class="card-footer text-center">
-                    <button type="button" class="btn btn-round btn-success" data-toggle="modal" data-target="#addMaster"><i class="fa fa-plus"></i>Add Masters</button>
+                    <button type="button" class="btn btn-round btn-success" data-toggle="modal" data-target="#addMaster"><i class="fa fa-plus"></i>Add Master</button>
                   </div>
                 @endif
               </div>

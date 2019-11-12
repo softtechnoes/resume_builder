@@ -146,17 +146,41 @@ class HomeController extends Controller
 
         
         $grad_id=$request->grad_id;
-        $board_id= $request->board_id;
-        $state_id=$request->state_id;
-        dd($grad_id);
+        $state_id=$request->state;
         if (Graduation::where('id', $grad_id)->exists()) {
             $updateGraduation = Graduation::where('id',$grad_id)->update($requestdata);
-            $board=EducationBoards::where('id',$board_id)->get()->toArray();
             $state=State::where('id',$state_id)->get()->toArray();
-            return response()->json([$requestdata,$board[0]['board_name'],$state[0]['name']]);
+            return response()->json([$requestdata,$state[0]['name']]);
         }
         else{
             $addGraduation = Graduation::create($requestdata);
+            return response()->json($requestdata);
+        }
+    }
+    public function addMaster(Request $request){
+        $requestdata['user_id']                  = Auth::user()->id;
+        $requestdata['course_name']              = $request->course_name;
+        $requestdata['college']                  = $request->college_name;
+        $requestdata['university']               = $request->university;
+        $requestdata['state']                    = $request->state;
+        $requestdata['passing_year']             = $request->passing_year;
+        $requestdata['percentage']               = $request->percentage;
+        $requestdata['from']                     = $request->from;
+        $requestdata['to']                       = $request->to;
+        $requestdata['college_address']          = $request->college_address;
+        $requestdata['specialization']           = $request->spcialization;
+
+        
+        $master_id=$request->master_id;
+        $state_id=$request->state;
+        if (Master::where('id', $master_id)->exists()) {
+            $updateMaster = Master::where('id',$master_id)->update($requestdata);
+            $state=State::where('id',$state_id)->get()->toArray();
+            return response()->json([$requestdata,$state[0]['name']]);
+        }
+        
+        else{
+            $addMaster = Master::create($requestdata);
             return response()->json($requestdata);
         }
     }
