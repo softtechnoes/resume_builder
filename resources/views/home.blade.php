@@ -90,6 +90,8 @@
 
 @push('scripts')
   @include('scripts.highSchool')
+  @include('scripts.intermediate')
+  @include('scripts.graduation')
   <script>
       $("#addAbout").click(function(){
         var about = $("#about").val();

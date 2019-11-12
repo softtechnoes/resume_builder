@@ -369,6 +369,12 @@
         inline: true
       });
       $('#example15').calendar();
+      $('#inter').calendar({
+        type: 'year'
+      });
+      $('#grad_pass').calendar({
+        type: 'year'
+      });
     
  </script>
  <script type="text/javascript">

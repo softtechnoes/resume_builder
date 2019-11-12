@@ -30,4 +30,6 @@ Route::get('login/github', 'Auth\LoginController@redirectToProvider');
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');  
 Route::get('add-about', 'HomeController@addAbout');    
 Route::get('add-high-school', 'HomeController@addHighSchool');
+Route::get('add-intermediate', 'HomeController@addIntermediate');
+Route::get('add-graduation', 'HomeController@addGraduation');
 

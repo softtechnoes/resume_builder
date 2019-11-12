@@ -14,6 +14,7 @@ use App\Experience;
 use App\Skills;
 use App\User;
 use App\State;
+use App\College;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -47,11 +48,12 @@ class HomeController extends Controller
         $personal_skills = Skills::where('user_id',$id)->where('skill_type','personal')->get()->toArray();
         $boards=EducationBoards::all();
         $states_stable=State::all();
-        // dd($states);
+        $colleges=College::get();
+        // dd($colleges);
 
        
         //dd($article);
-        return view('home',compact('high_school','intermediate','graduation','master','diploma','experience','professional_skills','personal_skills','boards','states_stable'));
+        return view('home',compact('high_school','intermediate','graduation','master','diploma','experience','professional_skills','personal_skills','boards','states_stable','colleges'));
     }
 
     public function comments(){
@@ -83,36 +85,79 @@ class HomeController extends Controller
 
         
 
-        $requestdata['user_id']              = Auth::user()->id;
-        $requestdata['school_name']      = $request->school_name;
-        $requestdata['board_name']      = $request->board;
-        $requestdata['state']      = $request->state;
-        $requestdata['passing_year']      = $request->passing_year;
-        $requestdata['percentage']      = $request->percentage;
+        $requestdata['user_id']             = Auth::user()->id;
+        $requestdata['school_name']         = $request->school_name;
+        $requestdata['board_name']          = $request->board;
+        $requestdata['state']               = $request->state;
+        $requestdata['passing_year']        = $request->passing_year;
+        $requestdata['percentage']          = $request->percentage;
         $requestdata['school_address']      = $request->school_address;
 
         $high_school_id=$request->high_school_id;
         $board_id= $request->board_id;
         $state_id=$request->state_id;
-        // dd($high_school_id);
         if (Highschool::where('id', $high_school_id)->exists()) {
-            // dd('Exist');
             $updatehighschool = Highschool::where('id',$high_school_id)->update($requestdata);
-             
-            
             $board=EducationBoards::where('id',$board_id)->get()->toArray();
             $state=State::where('id',$state_id)->get()->toArray();
-            //dd($state);
             return response()->json([$requestdata,$board[0]['board_name'],$state[0]['name']]);
         }
         else{
             $addhighschool = Highschool::create($requestdata);
             return response()->json($requestdata);
         }
-        
-        // return redirect()->back()->with('message', __('Hours added Successfully')); 
-        
-        // dd($school_name,$board,$state,$passing_year,$percentage,$school_address);
+    } 
+    public function addIntermediate(Request $request){
+        $requestdata['user_id']             = Auth::user()->id;
+        $requestdata['school_name']         = $request->school_name;
+        $requestdata['board_name']          = $request->board;
+        $requestdata['state']               = $request->state;
+        $requestdata['passing_year']        = $request->passing_year;
+        $requestdata['percentage']          = $request->percentage;
+        $requestdata['school_address']      = $request->school_address;
 
+        $intermediate_id=$request->intermediate_id;
+        $board_id= $request->board_id;
+        $state_id=$request->state_id;
+        if (Intermediate::where('id', $intermediate_id)->exists()) {
+            $updateIntermediate = Intermediate::where('id',$intermediate_id)->update($requestdata);
+            $board=EducationBoards::where('id',$board_id)->get()->toArray();
+            $state=State::where('id',$state_id)->get()->toArray();
+            return response()->json([$requestdata,$board[0]['board_name'],$state[0]['name']]);
+        }
+        else{
+            $addIntermediate = Intermediate::create($requestdata);
+            return response()->json($requestdata);
+        }
+    }
+    public function addGraduation(Request $request){
+        //dd('test');
+        $requestdata['user_id']                  = Auth::user()->id;
+        $requestdata['course_name']              = $request->course_name;
+        $requestdata['college']                  = $request->college_name;
+        $requestdata['university']               = $request->university;
+        $requestdata['state']                    = $request->state;
+        $requestdata['passing_year']             = $request->passing_year;
+        $requestdata['percentage']               = $request->percentage;
+        $requestdata['from']                     = $request->from;
+        $requestdata['to']                       = $request->to;
+        $requestdata['college_address']          = $request->college_address;
+        $requestdata['specialization']           = $request->spcialization;
+
+        
+        $grad_id=$request->grad_id;
+        $board_id= $request->board_id;
+        $state_id=$request->state_id;
+        dd($grad_id);
+        if (Graduation::where('id', $grad_id)->exists()) {
+            $updateGraduation = Graduation::where('id',$grad_id)->update($requestdata);
+            $board=EducationBoards::where('id',$board_id)->get()->toArray();
+            $state=State::where('id',$state_id)->get()->toArray();
+            return response()->json([$requestdata,$board[0]['board_name'],$state[0]['name']]);
+        }
+        else{
+            $addGraduation = Graduation::create($requestdata);
+            return response()->json($requestdata);
+        }
     }
 }

@@ -42,7 +42,7 @@
           $("#school_address_updated").html(data[0].school_address);
           $("#school_address_fresh").hide();
           // $("#success").modal('show');
-          $.growl.notice({ message: "The kitten is cute!" });
+          $.growl.notice({ message: "Done !" });
         }
       });
     }); 
