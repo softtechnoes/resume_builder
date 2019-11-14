@@ -84,6 +84,7 @@
     @include('models.intermediate')
     @include('models.graduation')
     @include('models.masters')
+    @include('models.diploma')
     @include('models.warning')
     @include('models.success')
 @endsection
@@ -93,6 +94,7 @@
   @include('scripts.intermediate')
   @include('scripts.graduation')
   @include('scripts.masters')
+  @include('scripts.diploma')
   <script>
       $("#addAbout").click(function(){
         var about = $("#about").val();

@@ -378,6 +378,9 @@
       $('#master_pass').calendar({
         type: 'year'
       });
+      $('#diploma_pass').calendar({
+        type: 'year'
+      });
     
  </script>
  <script type="text/javascript">

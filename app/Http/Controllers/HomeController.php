@@ -184,4 +184,31 @@ class HomeController extends Controller
             return response()->json($requestdata);
         }
     }
+    public function addDiploma(Request $request){
+        $requestdata['user_id']                  = Auth::user()->id;
+        $requestdata['course_name']              = $request->course_name;
+        $requestdata['college']                  = $request->college_name;
+        $requestdata['university']               = $request->university;
+        $requestdata['state']                    = $request->state;
+        $requestdata['passing_year']             = $request->passing_year;
+        $requestdata['percentage']               = $request->percentage;
+        $requestdata['from']                     = $request->from;
+        $requestdata['to']                       = $request->to;
+        $requestdata['college_address']          = $request->college_address;
+        $requestdata['specialization']           = $request->spcialization;
+
+        // dd($requestdata);
+        $diploma_id=$request->diploma_id;
+        $state_id=$request->state;
+        if (Diploma::where('id', $diploma_id)->exists()) {
+            $updateDiploma = Diploma::where('id',$diploma_id)->update($requestdata);
+            $state=State::where('id',$state_id)->get()->toArray();
+            return response()->json([$requestdata,$state[0]['name']]);
+        }
+        
+        else{
+            $addDiploma = Diploma::create($requestdata);
+            return response()->json($requestdata);
+        }
+    }
 }
