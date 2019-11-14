@@ -97,6 +97,7 @@
   @include('scripts.graduation')
   @include('scripts.masters')
   @include('scripts.diploma')
+  @include('scripts.experience')
   <script>
       $("#addAbout").click(function(){
         var about = $("#about").val();

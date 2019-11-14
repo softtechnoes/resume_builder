@@ -34,4 +34,5 @@ Route::get('add-intermediate', 'HomeController@addIntermediate');
 Route::get('add-graduation', 'HomeController@addGraduation');
 Route::get('add-master', 'HomeController@addMaster');
 Route::get('add-diploma', 'HomeController@addDiploma');
+Route::get('add-experience', 'ExperienceController@addExperience');
 

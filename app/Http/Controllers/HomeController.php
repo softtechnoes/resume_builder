@@ -194,7 +194,6 @@ class HomeController extends Controller
         $requestdata['college_address']          = $request->college_address;
         $requestdata['specialization']           = $request->spcialization;
 
-        // dd($requestdata);
         $diploma_id=$request->diploma_id;
         $state_id=$request->state;
         if (Diploma::where('id', $diploma_id)->exists()) {
@@ -202,7 +201,6 @@ class HomeController extends Controller
             $state=State::where('id',$state_id)->get()->toArray();
             return response()->json([$requestdata,$state[0]['name']]);
         }
-        
         else{
             $addDiploma = Diploma::create($requestdata);
             return response()->json($requestdata);
