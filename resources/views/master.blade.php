@@ -383,48 +383,16 @@
       });
     
  </script>
- <script type="text/javascript">
-  // $.growl({ title: "Growl", message: "The kitten is awake!" });
-  // $.growl.error({ message: "The kitten is attacking!" });
-  // $.growl.notice({ message: "The kitten is cute!" });
-  // $.growl.warning({ message: "The kitten is ugly!" });
-</script>
-  @stack('scripts')
+ @stack('scripts')
   <script>
- // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
-  window.onscroll = function() {scrollFunction()};
-
-  function scrollFunction() {
-    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-      // document.getElementById("navbar").style.height = "70px";
-      // document.getElementById("logo").style.height = "45px";
-      // document.getElementById("logo").style.width = "111px";
-      $('#navbar').animate({
-                height: '70px',
-                // width: '200px'
-            },.5,'linear');
-            // $('#logo').animate({
-            //     height: '47px',
-            //     width: '105px'
-            // },.5,'linear');
-     
-    } else {
-      // document.getElementById("navbar").style.height = "100px";
-      // document.getElementById("logo").style.height = "60px";
-      // document.getElementById("logo").style.width = "126px";
-      $('#navbar').animate({
-                // height: '100px',
-                padding: "40px"
-              
-                // width: '200px'
-            },.5,'linear');
-            // $('#logo').animate({
-            //     height: '60px',
-            //     width: '135px'
-            // },.5,'linear');
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        $('#navbar').animate({ height: '70px', },.5,'linear');     
+      } else {
+        $('#navbar').animate({ padding: "40px" },.5,'linear');
+      }
     }
-
-  }
-    </script>
+  </script>
 </body>
 </html>

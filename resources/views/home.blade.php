@@ -85,6 +85,8 @@
     @include('models.graduation')
     @include('models.masters')
     @include('models.diploma')
+
+    @include('models.experience.experience')
     @include('models.warning')
     @include('models.success')
 @endsection

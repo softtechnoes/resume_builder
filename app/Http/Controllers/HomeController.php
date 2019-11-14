@@ -43,16 +43,13 @@ class HomeController extends Controller
         $master = Master::where('user_id',$id)->get()->toArray();
         // dd($master);
         $diploma = Diploma::where('user_id',$id)->get()->toArray();
-        $experience = Experience::where('user_id',$id)->get()->toArray();
+        $experience = Experience::where('user_id',$id)->get();
         $professional_skills = Skills::where('user_id',$id)->where('skill_type','professional')->get()->toArray();
         $personal_skills = Skills::where('user_id',$id)->where('skill_type','personal')->get()->toArray();
         $boards=EducationBoards::all();
         $states_stable=State::all();
         $colleges=College::get();
-        // dd($colleges);
-
-       
-        //dd($article);
+        // dd($experience);
         return view('home',compact('high_school','intermediate','graduation','master','diploma','experience','professional_skills','personal_skills','boards','states_stable','colleges'));
     }
 
