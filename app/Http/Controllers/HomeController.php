@@ -44,8 +44,8 @@ class HomeController extends Controller
         // dd($master);
         $diploma = Diploma::where('user_id',$id)->get()->toArray();
         $experience = Experience::where('user_id',$id)->get();
-        $professional_skills = Skills::where('user_id',$id)->where('skill_type','professional')->get()->toArray();
-        $personal_skills = Skills::where('user_id',$id)->where('skill_type','personal')->get()->toArray();
+        $professional_skills = Skills::where('user_id',$id)->where('skill_type','professional')->get();
+        $personal_skills = Skills::where('user_id',$id)->where('skill_type','personal')->get();
         $boards=EducationBoards::all();
         $states_stable=State::all();
         $colleges=College::get();

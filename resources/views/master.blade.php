@@ -69,8 +69,10 @@
   {{-- <script language="JavaScript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script> --}}
    <link rel="stylesheet" href="assets/css/materialize.css" />
    <link rel="stylesheet" href="assets/css/layout.css" />
+   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
+  <script src="assets/js/core/jquery.min.js" type="text/javascript"></script>
   <link href="{{asset('plugins/select2-4.0.7/css/custom-select.css')}}" rel="stylesheet" type="text/css" />
   
   {{-- <link href="{{asset('plugins/notify/css/amaran.min.css')}}" rel="stylesheet" type="text/css" />
@@ -79,7 +81,7 @@
  {{-- Datepicker js ui --}}
   
   <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
-  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  {{-- <script src="https://code.jquery.com/jquery-2.1.4.js"></script> --}}
   <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 {{-- Notifications --}}
@@ -203,18 +205,100 @@
               </a>
             </div>
           </li>
-          <li class="nav-item">
-            @if (Auth::user())
-              <a class="btn btn-round btn-danger" href="/logout">
-                <i class="fa fa-sign-out"></i> Logout
+          @if (Auth::user())
+            <li class="nav-item dropdown">
+              <a class="btn btn-just-icon btn-warning  " data-toggle="dropdown">
+                <i class="nc-icon nc-sound-wave"></i>
               </a>
-              @else
-              <a class="btn btn-round btn-danger" href="/login">
-                <i class="fa fa-sign-in"></i> Login
+              <ul class="dropdown-menu dropdown-menu-right dropdown-notification">
+                <li class="no-notification">
+                  You're all clear!
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="btn btn-just-icon btn-danger  " data-toggle="dropdown">
+                <i class="nc-icon nc-email-85"></i>
               </a>
-            @endif
+              <ul class="dropdown-menu dropdown-menu-right dropdown-wide dropdown-notification">
+                <li class="dropdown-header">
+                  You have 7 unread notifications
+                </li>
+                <li>
+                  <ul class="dropdown-notification-list scroll-area">
+                    <a href="#paper-kit" class="notification-item">
+                      <div class="notification-text">
+                        <span class="badge badge-pill badge-success"><i class="nc-icon nc-chat-33"></i></span>
+                        <span class="message">
+                          <b>Patrick</b> mentioned you in a comment.</span>
+                        <br>
+                        <span class="time">20min ago</span>
+                        <button class="btn btn-just-icon read-notification btn-round">
+                          <i class="nc-icon nc-check-2"></i>
+                        </button>
+                      </div>
+                    </a>
+                    <a href="#paper-kit" class="notification-item">
+                      <div class="notification-text">
+                        <span class="badge badge-pill badge-info"><i class="nc-icon nc-alert-circle-i"></i></span>
+                        <span class="message">Our privacy policy changed!</span>
+                        <br>
+                        <span class="time">1day ago</span>
+                      </div>
+                    </a>
+                    <a href="#paper-kit" class="notification-item">
+                      <div class="notification-text">
+                        <span class="badge badge-pill badge-warning"><i class="nc-icon nc-ambulance"></i></span>
+                        <span class="message">Please confirm your email address.</span>
+                        <br>
+                        <span class="time">2days ago</span>
+                      </div>
+                    </a>
+                    <a href="#paper-kit" class="notification-item">
+                      <div class="notification-text">
+                        <span class="badge badge-pill badge-primary"><i class="nc-icon nc-paper"></i></span>
+                        <span class="message">Have you thought about marketing?</span>
+                        <br>
+                        <span class="time">3days ago</span>
+                      </div>
+                    </a>
+                  </ul>
+                </li>
+                <!--      end scroll area -->
+                <li class="dropdown-footer">
+                  <ul class="dropdown-footer-menu">
+                    <li>
+                      <a href="#paper-kit">Mark all as read</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#paper-kit" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30">
+                <div class="profile-photo-small">
+                  <img src="{!! Auth::user()->image !!}" class="img-circle img-responsive img-no-padding" alt="{!! Auth::user()->name !!}">
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+                <div class="dropdown-header">Action</div>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#paper-kit"><i class="fa fa-user"></i> Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#paper-kit"><i class="fa fa-gear"></i> Settings</a>
+                <div class="dropdown-divider"></div>
+                
+                <a class="dropdown-item" href="/logout">
+                  <i class="fa fa-sign-out"></i> Logout
+                </a>
+              </ul>
+            </li>
+          @else
+            <a class="btn btn-round btn-danger" href="/login">
+              <i class="fa fa-sign-in"></i> Login
+            </a>
+          @endif
            
-          </li>
           <!-- <li class="nav-item">
 					<a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
 						<i class="fab fa-twitter"></i>
@@ -268,6 +352,7 @@
 
   
   <!--   Core JS Files   -->
+
   <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
   <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
@@ -385,14 +470,26 @@
  </script>
  @stack('scripts')
   <script>
-    window.onscroll = function() {scrollFunction()};
-    function scrollFunction() {
-      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        $('#navbar').animate({ height: '70px', },.5,'linear');     
-      } else {
-        $('#navbar').animate({ padding: "40px" },.5,'linear');
+    
+    var size=$(window).width();
+    if(size<975){
+      $('#navbar').animate({ height: '96px', },.5,'linear');
+      $(".navbar-translate").css("margin-top", "-11px");
+    }
+    else{
+      window.onscroll = function() {scrollFunction()};
+      function scrollFunction() {
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+          $('#navbar').animate({ height: '70px', },.5,'linear');     
+          
+        } else {
+          $('#navbar').animate({ padding: "40px" },.5,'linear');
+        }
       }
     }
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
   </script>
 </body>
 </html>

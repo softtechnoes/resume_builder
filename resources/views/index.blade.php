@@ -11,8 +11,8 @@ Homepage : : Welcome
      <div class="content-center">
        <div class="container">
          <div class="title-brand">
-           <h1 class="presentation-title">Paper Kit 2</h1>
-           <div class="type">PRO</div>
+           <h1 class="presentation-title">Resu.me</h1>
+           <div class="type">BETA</div>
            <div class="fog-low">
              <img src="assets/img/sections/fog-low.png" alt="">
            </div>

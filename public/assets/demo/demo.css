@@ -1790,9 +1790,9 @@ pre.prettyprint {
   color: #333333;
 }
 
-/* .navbar-transparent.navbar-small .logo-container .brand {
+.navbar-transparent.navbar-small .logo-container .brand {
   color: #FFFFFF;
-} */
+}
 
 .navbar-default.navbar-small .logo-container .brand {
   color: #333333;

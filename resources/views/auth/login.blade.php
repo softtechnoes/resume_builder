@@ -1,5 +1,7 @@
 @extends('master')
-
+@section('title')
+    Login
+@endsection
 @section('content')
 {{-- <div class="container" style="margin-top:100px;">
     <div class="row justify-content-center">
