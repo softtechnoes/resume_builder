@@ -36,4 +36,5 @@ Route::get('add-master', 'HomeController@addMaster');
 Route::get('add-diploma', 'HomeController@addDiploma');
 Route::get('add-experience', 'ExperienceController@addExperience');
 Route::get('new-route', 'ExperienceController@addExperience');
+Route::get('develop-route', 'ExperienceController@addExperience')
 
